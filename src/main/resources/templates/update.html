@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
+    <title>Update</title>
+</head>
+<body>
+<form action="/attractions/update" method="POST" th:object="${attraction}">
+    <input name="id" type="hidden" th:value="${attraction.id}">
+    <p>
+        <label>Navn:</label>
+        <input name="name" type="text" th:value="${attraction.name}"/>
+    </p>
+    <p>
+        <label>Beskrivelse:</label>
+        <input name="beskrivelse" type="text" th:value="${attraction.description}"/>
+    </p>
+    <p>
+        <label>By:</label>
+        <input name="by" type="text" th:value="${attraction.by}"/>
+    </p>
+    <p>
+        <label>Tags:</label>
+        <input name="tags" type="text" th:value="${attraction.tags}"/>
+    </p>
+
+    <p>
+        <button type="submit">Opdatér attraktion</button>
+    </p>
+
+</form>
+</body>
+</html>

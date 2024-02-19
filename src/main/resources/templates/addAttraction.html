@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
+    <title>Add attraction</title>
+</head>
+<body>
+<form action="/attractions/tilføj" th:method="POST" th:object="${attraction}">
+    <p>
+        <label>Navn:</label>
+        <input name="name" type="text"/>
+    </p>
+    <p>
+        <label>Beskrivelse:</label>
+        <input id="description" type="text"/>
+    </p>
+         <label>Vælg by:</label>
+    <select>
+        <option value="København">København</option>
+        <option value="Aarhus">Aarhus</option>
+        <option value="Frederiksberg">Frederiksberg</option>
+    </select>
+    <p>
+    <label>Vælg tags:</label>
+    <div th:each="tags : ${tagsList}">
+    <input type="checkbox" th:field="*{interests}" th:value="${interest}" />
+    <label th:text="${interest}">
+    </label>
+    <br />
+</div>
+        <a th:href="@{/attractions}"> <button type="submit">Tilføj attraktion</button> </a>
+    </p>
+</form>
+</body>
+</html>

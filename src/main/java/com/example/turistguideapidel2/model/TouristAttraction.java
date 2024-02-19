@@ -42,4 +42,12 @@ public class TouristAttraction {
     public void setBy(String by) {
         this.by = by;
     }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
 }

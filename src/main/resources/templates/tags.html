@@ -7,7 +7,10 @@
 <body>
     <h1 th:text="${name}"></h1>
     <table>
-
+        <tr th:each="tags : ${tagsForSelectedAttraction}">
+            <td th:text="${tags}">Tags</td>
+        </tr>
     </table>
+    <a th:href="@{/attractions}"> <button type="button">Tilbage</button> </a>
 </body>
 </html>

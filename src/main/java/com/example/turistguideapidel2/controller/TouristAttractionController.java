@@ -37,10 +37,11 @@ public class TouristAttractionController {
     }
 
     //TODO: GET ("/attractions/add")
-   /* @GetMapping("/add")
+   @GetMapping("/tilføj")
     public String addAttraction(Model model){
         model.addAttribute("attraction", new TouristAttraction());
-    }*/
+        return "addAttraction";
+    }
 
     //TODO: POST ("/attractions/save")
 
