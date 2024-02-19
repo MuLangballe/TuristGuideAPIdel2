@@ -6,8 +6,9 @@
     <title>Tags</title>
 </head>
 <body>
-    <h1 th:text="${name.getName()}"></h1>
+<h1 th:text="${name.getName()}"></h1>
     <table>
+
         <tr th:each="tags : ${tagsForSelectedAttraction}">
             <td th:text="${tags}">Tags</td>
         </tr>

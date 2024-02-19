@@ -10,8 +10,9 @@ import java.util.List;
 public class TouristAttractionRepository {
     List<TouristAttraction> attractions = new ArrayList<>(List.of(
             new TouristAttraction("Havfrue", "Den lille Havfrue. En sej lille dame, på en sej lille sten", "København", List.of("Kunst", "Gratis", "Børnevenlig")),
-            new TouristAttraction("Runde", "Runde tårn. Ret højt tårn, som er ret rundt", "København", List.of("Kunst, Børnevenlig, Voksne ")),
-            new TouristAttraction("Amalienborg","Nydeligt hus til en nydelig familie", "København", List.of("Kunst, Gratis, Voksne"))));
+            new TouristAttraction("Strøget", "Shopping gågade", "København", List.of("Shopping", "Gratis", "Børnevenlig", "Voksne")),
+            new TouristAttraction("Runde", "Runde tårn. Ret højt tårn, som er ret rundt", "København", List.of("Kunst", "Børnevenlig", "Voksne", "Byliv")),
+            new TouristAttraction("Amalienborg","Nydeligt hus til en nydelig familie", "København", List.of("Kunst", "Gratis", "Voksne"))));
 
     public List<TouristAttraction> getListOfAttractions(){
         return attractions;
