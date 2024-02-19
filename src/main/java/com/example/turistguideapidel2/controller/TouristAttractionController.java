@@ -4,10 +4,7 @@ import com.example.turistguideapidel2.model.TouristAttraction;
 import com.example.turistguideapidel2.service.TouristAttractionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,8 +28,10 @@ public class TouristAttractionController {
     //TODO: GET ("/attractions/{name}/tags")
     @GetMapping("/{name}/tags")
     public String tags (@PathVariable("name") String name, Model model){
+        List<String> tagsForSelectedAttraction = touristAttractionService.getTagsForSelectedAttraction(name);
         TouristAttraction touristAttraction = touristAttractionService.getTouristAttractionByName(name);
         model.addAttribute("name", touristAttraction);
+        model.addAttribute("tagsForSelectedAttraction", tagsForSelectedAttraction);
         return "tags";
     }
 
@@ -44,6 +43,11 @@ public class TouristAttractionController {
     }
 
     //TODO: POST ("/attractions/save")
+    @PostMapping("/tilføj")
+    public String saveAttraction(@ModelAttribute TouristAttraction newAttraction){
+        touristAttractionService.addTouristAttraction(newAttraction);
+        return "redirect:/attractionList";
+    }
 
     //TODO: GET ("/attractions/{name}/edit")
 

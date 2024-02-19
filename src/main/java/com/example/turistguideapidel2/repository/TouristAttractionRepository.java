@@ -35,6 +35,19 @@ public class TouristAttractionRepository {
         return aTags;
     }
 
+    public ArrayList<String> getAttractionTagsList(String attractionName) {
+        ArrayList<String> attractionTagsList = new ArrayList<>();
+        for (TouristAttraction attraction : attractions) {
+            if (attraction.getName().equalsIgnoreCase(attractionName)) {
+                for (String tags : attraction.getTags()) {
+                    attractionTagsList.add(tags);
+                }
+            }
+        }
+        return attractionTagsList;
+    }
+
+
     public TouristAttraction getTouristAttractionByName(String name){
         for (TouristAttraction ta : attractions){
             if (ta.getName().toLowerCase().contains(name.toLowerCase())){
@@ -71,6 +84,11 @@ public class TouristAttractionRepository {
             i++;
         }
         return null;
+    }
+
+    public void addNewAttraction(String name, String description, String city, List<String> tags){
+        TouristAttraction newAttraction = new TouristAttraction(name, description, city, tags);
+        attractions.add(newAttraction);
     }
 
 

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <link th:href="@{main.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
     <title>Turist Guide</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
         <td> <a th:href="@{attractions/{name}/tags(name=${attraction.getName()})}"> <button type="button">Tags</button> </a> </td>
     </tr>
 </table>
-<button type="submit" >Tilføj attraktion</button>
+<a th:href="@{/attractions/tilføj}"> <button  type="submit" >Tilføj attraktion</button> </a>
 
 </body>
 </html>

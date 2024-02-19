@@ -2,10 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
     <title>Tags</title>
 </head>
 <body>
-    <h1 th:text="${name}"></h1>
+    <h1 th:text="${name.getName()}"></h1>
     <table>
         <tr th:each="tags : ${tagsForSelectedAttraction}">
             <td th:text="${tags}">Tags</td>

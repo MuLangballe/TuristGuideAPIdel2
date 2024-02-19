@@ -4,6 +4,7 @@ import com.example.turistguideapidel2.model.TouristAttraction;
 import com.example.turistguideapidel2.repository.TouristAttractionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,9 +24,8 @@ public class TouristAttractionService {
         return repository.getTouristAttractionByName(name);
     }
 
-    public TouristAttraction addTouristAttraction(TouristAttraction touristAttraction){
+    public void addTouristAttraction(TouristAttraction touristAttraction){
         repository.addTouristAttraction(touristAttraction);
-        return touristAttraction;
     }
 
     public void deleteTouristAttraction(String name){
