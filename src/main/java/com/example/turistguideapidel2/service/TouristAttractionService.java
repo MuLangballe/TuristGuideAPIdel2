@@ -35,4 +35,9 @@ public class TouristAttractionService {
     public TouristAttraction updateTouristAttraction(TouristAttraction touristAttraction){
         return repository.updateTouristAttraction(touristAttraction);
     }
+
+    public ArrayList<String> getTagsForSelectedAttraction(String attractionName){
+        return repository.getAttractionTagsList(attractionName);
+    }
+
 }

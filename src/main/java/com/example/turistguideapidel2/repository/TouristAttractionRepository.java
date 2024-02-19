@@ -10,28 +10,19 @@ import java.util.List;
 public class TouristAttractionRepository {
     List<TouristAttraction> attractions = new ArrayList<>(List.of(
             new TouristAttraction("Havfrue", "Den lille Havfrue. En sej lille dame, på en sej lille sten", "København", List.of("Kunst", "Gratis", "Børnevenlig")),
-            new TouristAttraction("Runde", "Runde tårn. Ret højt tårn, som er ret rundt", "København", List.of("Kunst, Børnevenlig ")),
-            new TouristAttraction("Amalienborg","Nydeligt hus til en nydelig familie", "København", List.of("Kunst, Gratis,"))));
+            new TouristAttraction("Runde", "Runde tårn. Ret højt tårn, som er ret rundt", "København", List.of("Kunst, Børnevenlig, Voksne ")),
+            new TouristAttraction("Amalienborg","Nydeligt hus til en nydelig familie", "København", List.of("Kunst, Gratis, Voksne"))));
 
     public List<TouristAttraction> getListOfAttractions(){
         return attractions;
     }
     public List<String> getCities() {
-        List<String> cities = new ArrayList<>(List.of());
-        cities.add("København");
-        cities.add("Næstved");
-        cities.add("Randers");
-        cities.add("Hareskovby");
+        List<String> cities = new ArrayList<>(List.of("København","Randers","Næstved", "Hareskovsby"));
         return cities;
     }
 
     public List<String> getTags() {
-        List<String> aTags = new ArrayList<>(List.of());
-        aTags.add("Børnevenlig");
-        aTags.add("Kunst");
-        aTags.add("Gratis");
-        aTags.add("Natur");
-        aTags.add("Voksne");
+        List<String> aTags = new ArrayList<>(List.of("Børnevenlig","Kunst","Gratis","Naur", "Voksne" ));
         return aTags;
     }
 
