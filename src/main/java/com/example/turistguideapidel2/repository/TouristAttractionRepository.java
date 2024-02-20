@@ -18,13 +18,11 @@ public class TouristAttractionRepository {
         return attractions;
     }
     public List<String> getCities() {
-        List<String> cities = new ArrayList<>(List.of("København","Randers","Næstved", "Hareskovsby"));
-        return cities;
+        return new ArrayList<>(List.of("København","Randers","Næstved", "Hareskovsby"));
     }
 
     public List<String> getTags() {
-        List<String> aTags = new ArrayList<>(List.of("Børnevenlig","Kunst","Gratis","Naur", "Voksne" ));
-        return aTags;
+        return new ArrayList<>(List.of("Børnevenlig","Kunst","Gratis","Naur", "Voksne" ));
     }
 
     public ArrayList<String> getAttractionTagsList(String attractionName) {
@@ -69,22 +67,24 @@ public class TouristAttractionRepository {
     public TouristAttraction updateTouristAttraction(TouristAttraction touristAttraction){
         int i = 0;
         while (i < attractions.size()){
-            if (touristAttraction.getName().toLowerCase().contains(touristAttraction.getName())){
-                attractions.set(i, touristAttraction);
-                break;
-            }
+                if (attractions.get(i).getName().equalsIgnoreCase(touristAttraction.getName())) {
+                    attractions.set(i, touristAttraction);
+                    return touristAttraction;
+                }
             i++;
         }
         return null;
     }
-
-    public void addNewAttraction(String name, String description, String city, List<String> tags){
-        TouristAttraction newAttraction = new TouristAttraction(name, description, city, tags);
-        attractions.add(newAttraction);
-    }
-
-
-
+//
+//    public void editAttractions(List<TouristAttraction> attractions, String newName, String newDescription, String newBy, String newTags) {
+//        attractions.stream()
+//                .forEach(attraction -> {
+//                    attraction.setName(newName);
+//                    attraction.setDescription(newDescription);
+//                    attraction.setBy(newBy);
+//                    attraction.setTags(attraction.getTags());
+//                });
+//    }
 
 
 }

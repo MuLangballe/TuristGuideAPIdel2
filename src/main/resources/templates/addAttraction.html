@@ -8,12 +8,12 @@
 <body>
 <form action="/attractions/tilføj" th:method="POST" th:object="${attraction}">
     <p>
-        <label>Navn:</label>
-        <input name="name" type="text"/>
+        <label for="name"> Navn:</label>
+        <input id="name" type="text" th:field="*{name}"/>
     </p>
     <p>
-        <label>Beskrivelse:</label>
-        <input id="description" type="text"/>
+        <label for="description"> Beskrivelse:</label>
+        <input id="description" type="text" th:field="*{description}"/>
     </p>
          <label>Vælg by:</label>
     <select>
@@ -30,7 +30,7 @@
 </div>
     <p>
         <a th:href="@{/attractions}"> <button type="submit">Tilføj attraktion</button> </a>
-
+        <a th:href="@{/attractions}"> <button type="button">Tilbage</button> </a>
     </p>
 
 </form>

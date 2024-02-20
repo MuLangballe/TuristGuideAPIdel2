@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SuppressWarnings("ALL")
 @Controller
 @RequestMapping("/attractions")
 public class TouristAttractionController {
@@ -52,6 +53,14 @@ public class TouristAttractionController {
     }
 
     //TODO: GET ("/attractions/{name}/edit")
+    @GetMapping("/{name}/edit")
+    public String editAttraction(@PathVariable("name") String name, Model model){
+        TouristAttraction touristAttraction = touristAttractionService.getTouristAttractionByName(name);
+        model.addAttribute("attraction", touristAttraction);
+        List<String> tagsList = touristAttractionService.getTags();
+        model.addAttribute("tags", tagsList);
+        return "update";
+    }
 
     //TODO: POST ("/attractions/update")
 

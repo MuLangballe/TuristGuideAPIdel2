@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class TouristAttractionService {
 
-    private TouristAttractionRepository repository;
+    private final TouristAttractionRepository repository;
 
     public TouristAttractionService(TouristAttractionRepository touristRepository){
         this.repository = touristRepository;
