@@ -44,4 +44,9 @@ public class TouristAttractionService {
         return repository.getTags();
     }
 
+    public List<String> getCities(){
+        return repository.getCities();
+    }
+
+
 }

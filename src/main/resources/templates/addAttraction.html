@@ -6,7 +6,7 @@
     <title>Add attraction</title>
 </head>
 <body>
-<form action="/attractions/tilføj" th:method="POST" th:object="${attraction}">
+<form action="/attractions/save" th:method="POST" th:object="${attraction}">
     <p>
         <label for="name"> Navn:</label>
         <input id="name" type="text" th:field="*{name}"/>
@@ -17,9 +17,9 @@
     </p>
          <label>Vælg by:</label>
     <select>
-        <option value="København">København</option>
-        <option value="Aarhus">Aarhus</option>
-        <option value="Frederiksberg">Frederiksberg</option>
+        <option th:field="*{by}" th:value="København">København</option>
+        <option th:field="*{by}" th:value="Aarhus">Aarhus</option>
+        <option th:field="*{by}" th:value="Frederiksberg">Frederiksberg</option>
     </select>
     <p>
     <label>Vælg tags:</label>

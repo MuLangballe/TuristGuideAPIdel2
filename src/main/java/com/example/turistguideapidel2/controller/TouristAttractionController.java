@@ -49,7 +49,7 @@ public class TouristAttractionController {
     @PostMapping("/save")
     public String saveAttraction(@ModelAttribute TouristAttraction newAttraction){
         touristAttractionService.addTouristAttraction(newAttraction);
-        return "redirect:/attractionList";
+        return "redirect:/attractions";
     }
 
     //TODO: GET ("/attractions/{name}/edit")
@@ -63,6 +63,11 @@ public class TouristAttractionController {
     }
 
     //TODO: POST ("/attractions/update")
+    @PostMapping("/update")
+    public String saveUpdate(@ModelAttribute TouristAttraction updatedAttraction){
+        touristAttractionService.updateTouristAttraction(updatedAttraction);
+        return "redirect:/attractions";
+    }
 
     //TODO: GET ("/attractions/{name}/delete")
 
