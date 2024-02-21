@@ -17,9 +17,7 @@ public class TouristAttraction {
     }
 
     public TouristAttraction(){
-
     }
-
 
     public String getName() {
         return name;
@@ -49,11 +47,8 @@ public class TouristAttraction {
         this.city = city;
     }
 
-    public List<String> getTags() {
-        return tags;
-    }
-
     public void setTags(List<String> tags) {
         this.tags = tags;
     }
+
 }

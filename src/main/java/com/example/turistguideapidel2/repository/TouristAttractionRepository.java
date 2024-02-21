@@ -19,11 +19,11 @@ public class TouristAttractionRepository {
     }
 
     public List<String> getCities() {
-        return new ArrayList<>(List.of("København","Randers","Næstved", "Hareskovsby"));
+        return new ArrayList<>(List.of("København", "Randers", "Næstved", "Hareskovsby"));
     }
 
     public List<String> getTags() {
-        return new ArrayList<>(List.of("Børnevenlig","Kunst","Gratis","Naur", "Voksne" ));
+        return new ArrayList<>(List.of("Børnevenlig ", "Kunst", "Gratis", "Natur", "Voksne"));
     }
 
     public ArrayList<String> getAttractionTagsList(String attractionName) {
@@ -37,7 +37,6 @@ public class TouristAttractionRepository {
         }
         return attractionTagsList;
     }
-
 
     public TouristAttraction getTouristAttractionByName(String name) {
         for (TouristAttraction ta : attractions) {

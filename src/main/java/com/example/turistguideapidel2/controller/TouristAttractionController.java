@@ -34,11 +34,11 @@ public class TouristAttractionController {
         return "tags";
     }
 
-    //TODO: GET ("/attractions/add")
-   @GetMapping("/tilføj")
+   @GetMapping("/add")
     public String addAttraction(Model model){
-        model.addAttribute("attraction", new TouristAttraction());
         List<String> tagsList = touristAttractionService.getTags();
+        List<String> cities = touristAttractionService.getCities();
+        model.addAttribute("attraction", new TouristAttraction());
         model.addAttribute("tags", tagsList);
         model.addAttribute("cities", cities);
         return "addAttraction";
@@ -53,7 +53,6 @@ public class TouristAttractionController {
     @GetMapping("/{name}/edit")
     public String editAttraction(@PathVariable("name") String name, Model model){
         TouristAttraction touristAttraction = touristAttractionService.getTouristAttractionByName(name);
-        model.addAttribute("attraction", touristAttraction);
         List<String> tagsList = touristAttractionService.getTags();
         List<String> cityList = touristAttractionService.getCities();
         model.addAttribute("attraction", touristAttraction);

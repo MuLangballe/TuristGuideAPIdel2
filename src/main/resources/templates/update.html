@@ -6,7 +6,7 @@
     <title>Update</title>
 </head>
 <body>
-<form action="/attractions/update" method="POST" th:object="${attraction}">
+<form th:action="@{/attractions/update}" th:method="POST" th:object="${attraction}">
     <p>
         <label for="name">Navn:</label>
         <input id="name" type="text" th:field="*{name}" />
