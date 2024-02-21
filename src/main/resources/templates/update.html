@@ -12,16 +12,20 @@
         <input id="name" type="text" th:field="*{name}" />
     </p>
     <p>
-        <label>Beskrivelse:</label>
-        <input name="beskrivelse" type="text" th:field="*{description}"/>
+        <label for="description">Beskrivelse:</label>
+        <input id="description" type="text" th:field="*{description}"/>
     </p>
     <p>
-        <label>By:</label>
-        <select>
-            <option th:field="*{by}" th:value="København">København</option>
-            <option th:field="*{by}" th:value="Aarhus">Aarhus</option>
-            <option th:field="*{by}" th:value="Frederiksberg">Frederiksberg</option>
-        </select>
+    <label>Vælg by:</label>
+        <label>
+            <select th:field="*{city}">
+                <option value=""> Vælg by </option>
+                <option th:each="c: ${cities}"
+                        th:value="${c}"
+                        th:text="${c}">
+                    </option>
+            </select>
+        </label>
     </p>
     <p>
         <label>Vælg tags:</label>

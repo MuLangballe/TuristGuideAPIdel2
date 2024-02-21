@@ -17,7 +17,7 @@
     <tr th:each="attraction : ${attractions}">
         <td th:text="${attraction.getName()}"></td>
         <td th:text="${attraction.getDescription()}"></td>
-        <td th:text="${attraction.getBy()}"></td>
+        <td th:text="${attraction.getCity()}"></td>
         <td> <a th:href="@{attractions/{name}/tags(name=${attraction.getName()})}"> <button type="button">Tags</button> </a> </td>
         <td> <a th:href="@{attractions/{name}/edit(name=${attraction.getName()})}"> <button type="button">Opdater</button> </a> </td>
         <td> <a th:href="@{attractions/{name}/delete(name=${attraction.getName()})}"> <button type="button">Slet</button> </a> </td>

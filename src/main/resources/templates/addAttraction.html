@@ -16,11 +16,12 @@
         <input id="description" type="text" th:field="*{description}"/>
     </p>
          <label>Vælg by:</label>
-    <select>
-        <option th:field="*{by}" th:value="København">København</option>
-        <option th:field="*{by}" th:value="Aarhus">Aarhus</option>
-        <option th:field="*{by}" th:value="Frederiksberg">Frederiksberg</option>
-    </select>
+    <label>
+        <select th:field="*{city}">
+            <option value=""> Vælg by </option>
+            <option th:each="city: ${cities}"  th:value="${city}" th:text="${city}"> < /option>
+        </select>
+    </label>
     <p>
     <label>Vælg tags:</label>
     <div th:each="tag : ${tags}">

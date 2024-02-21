@@ -12,11 +12,12 @@ public class TouristAttractionRepository {
             new TouristAttraction("Havfrue", "Den lille Havfrue. En sej lille dame, på en sej lille sten", "København", List.of("Kunst", "Gratis", "Børnevenlig")),
             new TouristAttraction("Strøget", "Shopping gågade", "København", List.of("Shopping", "Gratis", "Børnevenlig", "Voksne")),
             new TouristAttraction("Runde", "Runde tårn. Ret højt tårn, som er ret rundt", "København", List.of("Kunst", "Børnevenlig", "Voksne", "Byliv")),
-            new TouristAttraction("Amalienborg","Nydeligt hus til en nydelig familie", "København", List.of("Kunst", "Gratis", "Voksne"))));
+            new TouristAttraction("Amalienborg", "Nydeligt hus til en nydelig familie", "København", List.of("Kunst", "Gratis", "Voksne"))));
 
-    public List<TouristAttraction> getListOfAttractions(){
+    public List<TouristAttraction> getListOfAttractions() {
         return attractions;
     }
+
     public List<String> getCities() {
         return new ArrayList<>(List.of("København","Randers","Næstved", "Hareskovsby"));
     }
@@ -38,25 +39,23 @@ public class TouristAttractionRepository {
     }
 
 
-    public TouristAttraction getTouristAttractionByName(String name){
-        for (TouristAttraction ta : attractions){
-            if (ta.getName().toLowerCase().contains(name.toLowerCase())){
+    public TouristAttraction getTouristAttractionByName(String name) {
+        for (TouristAttraction ta : attractions) {
+            if (ta.getName().toLowerCase().contains(name.toLowerCase())) {
                 return ta;
             }
         }
         return null;
     }
 
-    public TouristAttraction addTouristAttraction(TouristAttraction touristAttraction){
+    public void addTouristAttraction(TouristAttraction touristAttraction) {
         attractions.add(touristAttraction);
-        return touristAttraction;
     }
 
-    public void deleteTouristAttraction(String name){
+    public void deleteTouristAttraction(String name) {
         TouristAttraction found = new TouristAttraction();
-
-        for (TouristAttraction ta : attractions){
-            if (ta.getName().toLowerCase().contains(name.toLowerCase())){
+        for (TouristAttraction ta : attractions) {
+            if (ta.getName().toLowerCase().contains(name.toLowerCase())) {
                 found = ta;
                 break;
             }
@@ -64,27 +63,15 @@ public class TouristAttractionRepository {
         attractions.remove(found);
     }
 
-    public TouristAttraction updateTouristAttraction(TouristAttraction touristAttraction){
-        int i = 0;
-        while (i < attractions.size()){
-                if (attractions.get(i).getName().equalsIgnoreCase(touristAttraction.getName())) {
-                    attractions.set(i, touristAttraction);
-                    return touristAttraction;
-                }
-            i++;
-        }
-        return null;
+    public TouristAttraction updateTouristAttraction(TouristAttraction touristAttraction) {
+        for (TouristAttraction ta : attractions) {
+            if (ta.getName().equalsIgnoreCase(touristAttraction.getName())) {
+                ta.setDescription(touristAttraction.getDescription());
+                ta.setCity(touristAttraction.getCity());
+                ta.setTags(touristAttraction.getTags());
+                return ta;
+            }
+        } return null;
     }
-//
-//    public void editAttractions(List<TouristAttraction> attractions, String newName, String newDescription, String newBy, String newTags) {
-//        attractions.stream()
-//                .forEach(attraction -> {
-//                    attraction.setName(newName);
-//                    attraction.setDescription(newDescription);
-//                    attraction.setBy(newBy);
-//                    attraction.setTags(attraction.getTags());
-//                });
-//    }
-
 
 }
