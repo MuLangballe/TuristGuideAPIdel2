@@ -6,7 +6,7 @@
     <title>Add attraction</title>
 </head>
 <body>
-<form action="/attractions/save" th:method="POST" th:object="${attraction}">
+<form th:action="@{/attractions/save}" th:method="POST" th:object="${attraction}">
     <p>
         <label for="name"> Navn:</label>
         <input id="name" type="text" th:field="*{name}"/>
@@ -25,8 +25,10 @@
     <p>
     <label>Vælg tags:</label>
     <div th:each="tag : ${tags}">
-    <input type="checkbox" th:field="*{tags}" th:value="${tag}" />
-    <label th:text="${tag}"></label>
+        <label>
+            <input type="checkbox" th:field="*{tags}" th:value="${tag}" />
+        </label>
+        <label th:text="${tag}"></label>
     <br />
 </div>
     <p>

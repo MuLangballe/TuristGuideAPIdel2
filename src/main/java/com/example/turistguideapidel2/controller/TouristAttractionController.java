@@ -18,7 +18,6 @@ public class TouristAttractionController {
         this.touristAttractionService = touristAttractionService;
     }
 
-    //TODO: GET ("/attractions")
     @GetMapping("")
     public String showAttractions(Model model){
         List<TouristAttraction> attractionList = touristAttractionService.getListOfAttractions();
@@ -26,7 +25,6 @@ public class TouristAttractionController {
         return "attractionList";
     }
 
-    //TODO: GET ("/attractions/{name}/tags")
     @GetMapping("/{name}/tags")
     public String tags (@PathVariable("name") String name, Model model){
         List<String> tagsForSelectedAttraction = touristAttractionService.getTagsForSelectedAttraction(name);
@@ -42,33 +40,38 @@ public class TouristAttractionController {
         model.addAttribute("attraction", new TouristAttraction());
         List<String> tagsList = touristAttractionService.getTags();
         model.addAttribute("tags", tagsList);
+        model.addAttribute("cities", cities);
         return "addAttraction";
     }
 
-    //TODO: POST ("/attractions/save")
     @PostMapping("/save")
     public String saveAttraction(@ModelAttribute TouristAttraction newAttraction){
         touristAttractionService.addTouristAttraction(newAttraction);
         return "redirect:/attractions";
     }
 
-    //TODO: GET ("/attractions/{name}/edit")
     @GetMapping("/{name}/edit")
     public String editAttraction(@PathVariable("name") String name, Model model){
         TouristAttraction touristAttraction = touristAttractionService.getTouristAttractionByName(name);
         model.addAttribute("attraction", touristAttraction);
         List<String> tagsList = touristAttractionService.getTags();
+        List<String> cityList = touristAttractionService.getCities();
+        model.addAttribute("attraction", touristAttraction);
         model.addAttribute("tags", tagsList);
+        model.addAttribute("cities", cityList);
         return "update";
     }
 
-    //TODO: POST ("/attractions/update")
     @PostMapping("/update")
     public String saveUpdate(@ModelAttribute TouristAttraction updatedAttraction){
         touristAttractionService.updateTouristAttraction(updatedAttraction);
         return "redirect:/attractions";
     }
 
-    //TODO: GET ("/attractions/{name}/delete")
+    @GetMapping("/{name}/delete")
+    public String deleteAttraction(@PathVariable("name") String name){
+        touristAttractionService.deleteTouristAttraction(name);
+        return "redirect:/attractions";
+    }
 
 }

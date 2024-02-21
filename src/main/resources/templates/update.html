@@ -30,11 +30,12 @@
     <p>
         <label>Vælg tags:</label>
     <div th:each="tag : ${tags}">
-        <input type="checkbox" th:field="*{tags}" th:value="${tag}" />
+        <label>
+            <input type="checkbox" th:field="*{tags}" th:value="${tag}" />
+        </label>
         <label th:text="${tag}"></label>
         <br/>
     </div>
-    </p>
     <p>
         <a th:href="@{/attractions}"> <button type="submit">Opdater attraktion</button> </a>
         <a th:href="@{/attractions}"> <button type="button">Tilbage</button> </a>
