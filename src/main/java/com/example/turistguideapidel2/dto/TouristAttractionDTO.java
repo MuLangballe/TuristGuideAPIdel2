@@ -1,7 +1,5 @@
 package com.example.turistguideapidel2.dto;
 
-import com.example.turistguideapidel2.model.TouristAttraction;
-
 import java.util.List;
 
 public class TouristAttractionDTO {
@@ -10,9 +8,6 @@ public class TouristAttractionDTO {
     private String city;
     private List<TagDTO> taglistDTO;
 
-    public TouristAttractionDTO(){
-
-    }
 
     public TouristAttractionDTO(String name, String description, String city, List<TagDTO> taglistDTO){
         this.name = name;

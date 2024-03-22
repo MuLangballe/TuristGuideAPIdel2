@@ -3,6 +3,7 @@ package com.example.turistguideapidel2.repository;
 import com.example.turistguideapidel2.dto.TagDTO;
 import com.example.turistguideapidel2.dto.TouristAttractionDTO;
 import com.example.turistguideapidel2.model.TouristAttraction;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -12,10 +13,17 @@ import java.util.List;
 @Repository
 public class TouristAttractionRepository {
 
+    @Value("${spring.datasource.url}")
+    private String db_url;
+    @Value("${spring.datasource.username}")
+    private String username;
+    @Value("${spring.datasource.password}")
+    private String pwd;
+
     public List<TouristAttractionDTO> getListOfAttractions() {
         List<TouristAttractionDTO> touristAttractionList = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/touristattraction", "root", "DETnumt24#")) {
+        try (Connection connection = DriverManager.getConnection(db_url, username, pwd)) {
             String SQL = "SELECT TName, TDescription, CityName, Tag FROM attraction\n" +
                     "JOIN City ON attraction.CityNO = city.CityID\n" +
                     "JOIN attractiontags ON attraction.AttractionID = attractiontags.attractionID\n" +
@@ -46,7 +54,7 @@ public class TouristAttractionRepository {
 
         public List<String> getCities() throws SQLException {
         List<String> cities = null;
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/touristattraction", "root", "DETnumt24#")){
+        try (Connection connection = DriverManager.getConnection(db_url, username, pwd)){
             String SQL = "SELECT cityName FROM city";
             PreparedStatement ps = connection.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
@@ -60,7 +68,7 @@ public class TouristAttractionRepository {
 
     public List<String> getTags() {
         List<String> tags = null;
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/touristattraction", "root", "DETnumt24#")){
+        try (Connection connection = DriverManager.getConnection(db_url, username, pwd)){
             String SQL = "SELECT Tag FROM Tags";
             PreparedStatement ps = connection.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
@@ -78,7 +86,7 @@ public class TouristAttractionRepository {
     public List<TagDTO> getAttractionTagListDTO(String attractionName){
         List<TagDTO> tagList = new ArrayList<>();
         TagDTO tagDTO;
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/touristattraction", "root", "DETnumt24#")){
+        try (Connection connection = DriverManager.getConnection(db_url, username, pwd)){
             String SQL = "SELECT tag FROM attractiontags\n" +
                     "join attraction on attraction.attractionID = attractiontags.attractionID\n" +
                     "join tags on tags.TagNO = attractiontags.TagID\n" +
@@ -100,7 +108,7 @@ public class TouristAttractionRepository {
 
     public TouristAttractionDTO getTouristAttractionByName(String attractionName){
         TouristAttractionDTO foundAttraction = null;
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/touristattraction", "root", "DETnumt24#")){
+        try (Connection connection = DriverManager.getConnection(db_url, username, pwd)){
             String SQL = "SELECT TName, TDescription, CityName, Tag FROM attraction\n" +
                     "JOIN City ON attraction.CityNO = city.CityID\n" +
                     "JOIN attractiontags ON attraction.AttractionID = attractiontags.attractionID\n" +
@@ -124,7 +132,7 @@ public class TouristAttractionRepository {
     }
 
    public void addTouristAttraction(TouristAttraction touristAttraction) {
-       try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/touristattraction", "root", "DETnumt24#")) {
+       try (Connection connection = DriverManager.getConnection(db_url, username, pwd)) {
            String SQL = "INSERT INTO attraction(TName, TDescription, CityNO) /n" +
                     "VALUES ( ?, ?, ?);";
            PreparedStatement ps = connection.prepareStatement(SQL);
@@ -151,7 +159,7 @@ public class TouristAttractionRepository {
    }
 
        public void deleteTouristAttraction (String attractionName){
-           try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/touristattraction", "root", "DETnumt24#")) {
+           try (Connection connection = DriverManager.getConnection(db_url, username, pwd)) {
                String SQL = "DELETE FROM AttractionTags \n" +
                        "WHERE attractionID = (SELECT AttractionID\n" +
                        "FROM attraction \n" +
@@ -175,7 +183,7 @@ public class TouristAttractionRepository {
 
 
     public void updateTouristAttraction(TouristAttraction touristAttraction) {
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/touristattraction", "root", "DETnumt24#")) {
+        try (Connection connection = DriverManager.getConnection(db_url, username, pwd)) {
             String SQL = "UPDATE attraction \" +\n" +
                     "                    \"SET a_name = ?, a_description = ?, city_id = ? \" +\n" +
                     "                    \"WHERE id = ?;";
@@ -210,7 +218,7 @@ public class TouristAttractionRepository {
        public String getLocationNumberFromName (String city) {
            int number = 0;
 
-           try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/touristattraction", "root", "DETnumt24#"))
+           try (Connection connection = DriverManager.getConnection(db_url, username, pwd))
            {
 
                String SQL = "SELECT ID FROM location WHERE city = ?;";
@@ -232,7 +240,7 @@ public class TouristAttractionRepository {
     public String getAttractionNumberFromName(String name){
         int number = 0;
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/touristattraction", "root", "DETnumt24#"))
+        try (Connection connection = DriverManager.getConnection(db_url, username, pwd))
         {
 
             String SQL = "SELECT ID FROM attraction WHERE a_name = ?;";
@@ -254,7 +262,7 @@ public class TouristAttractionRepository {
     public String getTagNumberFromName(String name){
         int number = 0;
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/touristattraction", "root", "DETnumt24#"))
+        try (Connection connection = DriverManager.getConnection(db_url, username, pwd))
         {
 
             String SQL = "SELECT ID FROM tag WHERE tag = ?;";
