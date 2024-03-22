@@ -1,9 +1,12 @@
 package com.example.turistguideapidel2.service;
 
+import com.example.turistguideapidel2.dto.TagDTO;
+import com.example.turistguideapidel2.dto.TouristAttractionDTO;
 import com.example.turistguideapidel2.model.TouristAttraction;
 import com.example.turistguideapidel2.repository.TouristAttractionRepository;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,15 +19,15 @@ public class TouristAttractionService {
         this.repository = touristRepository;
     }
 
-    public List<TouristAttraction> getListOfAttractions(){
+    public List<TouristAttractionDTO> getListOfAttractions(){
         return repository.getListOfAttractions();
     }
 
-    public TouristAttraction getTouristAttractionByName(String name){
+    public TouristAttractionDTO getTouristAttractionByName(String name){
         return repository.getTouristAttractionByName(name);
     }
 
-    public void addTouristAttraction(TouristAttraction touristAttraction){
+   public void addTouristAttraction(TouristAttraction touristAttraction){
         repository.addTouristAttraction(touristAttraction);
     }
 
@@ -32,19 +35,21 @@ public class TouristAttractionService {
         repository.deleteTouristAttraction(name);
     }
 
-    public TouristAttraction updateTouristAttraction(TouristAttraction touristAttraction){
-        return repository.updateTouristAttraction(touristAttraction);
+    public void updateTouristAttraction(TouristAttraction touristAttraction){
+         repository.updateTouristAttraction(touristAttraction);
     }
 
-    public ArrayList<String> getTagsForSelectedAttraction(String attractionName){
-        return repository.getAttractionTagsList(attractionName);
+
+
+    public List<TagDTO> getTagsForSelectedAttraction(String attractionName){
+        return repository.getAttractionTagListDTO(attractionName);
     }
 
     public List<String> getTags() {
         return repository.getTags();
     }
 
-    public List<String> getCities(){
+    public List<String> getCities() throws SQLException {
         return repository.getCities();
     }
 

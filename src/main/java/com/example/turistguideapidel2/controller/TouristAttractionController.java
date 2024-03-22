@@ -1,11 +1,14 @@
 package com.example.turistguideapidel2.controller;
 
+import com.example.turistguideapidel2.dto.TagDTO;
+import com.example.turistguideapidel2.dto.TouristAttractionDTO;
 import com.example.turistguideapidel2.model.TouristAttraction;
 import com.example.turistguideapidel2.service.TouristAttractionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @SuppressWarnings("ALL")
@@ -20,22 +23,22 @@ public class TouristAttractionController {
 
     @GetMapping("")
     public String showAttractions(Model model){
-        List<TouristAttraction> attractionList = touristAttractionService.getListOfAttractions();
+        List<TouristAttractionDTO> attractionList = touristAttractionService.getListOfAttractions();
         model.addAttribute("attractions", attractionList);
         return "attractionList";
     }
 
     @GetMapping("/{name}/tags")
     public String tags (@PathVariable("name") String name, Model model){
-        List<String> tagsForSelectedAttraction = touristAttractionService.getTagsForSelectedAttraction(name);
-        TouristAttraction touristAttraction = touristAttractionService.getTouristAttractionByName(name);
+        List<TagDTO> tagsForSelectedAttraction = touristAttractionService.getTagsForSelectedAttraction(name);
+        TouristAttractionDTO touristAttraction = touristAttractionService.getTouristAttractionByName(name);
         model.addAttribute("name", touristAttraction);
         model.addAttribute("tagsForSelectedAttraction", tagsForSelectedAttraction);
         return "tags";
     }
 
    @GetMapping("/add")
-    public String addAttraction(Model model){
+    public String addAttraction(Model model) throws SQLException {
         List<String> tagsList = touristAttractionService.getTags();
         List<String> cities = touristAttractionService.getCities();
         model.addAttribute("attraction", new TouristAttraction());
@@ -44,15 +47,15 @@ public class TouristAttractionController {
         return "addAttraction";
     }
 
-    @PostMapping("/save")
+   @PostMapping("/save")
     public String saveAttraction(@ModelAttribute TouristAttraction newAttraction){
         touristAttractionService.addTouristAttraction(newAttraction);
         return "redirect:/attractions";
     }
 
     @GetMapping("/{name}/edit")
-    public String editAttraction(@PathVariable("name") String name, Model model){
-        TouristAttraction touristAttraction = touristAttractionService.getTouristAttractionByName(name);
+    public String editAttraction(@PathVariable("name") String name, Model model) throws SQLException {
+        TouristAttractionDTO touristAttraction = touristAttractionService.getTouristAttractionByName(name);
         List<String> tagsList = touristAttractionService.getTags();
         List<String> cityList = touristAttractionService.getCities();
         model.addAttribute("attraction", touristAttraction);
@@ -61,7 +64,7 @@ public class TouristAttractionController {
         return "update";
     }
 
-    @PostMapping("/update")
+   @PostMapping("/update")
     public String saveUpdate(@ModelAttribute TouristAttraction updatedAttraction){
         touristAttractionService.updateTouristAttraction(updatedAttraction);
         return "redirect:/attractions";
